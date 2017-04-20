@@ -97,7 +97,8 @@ oos_upload_file <- function(credentials,container,directory,file_name) {
   temp_wd <- getwd()
   setwd(directory)
   fetch_url <- paste(credentials$url,"/",container,"/",file_name,sep="")
-  create_response <- content(httr::PUT(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token )))
+  create_response <- content(httr::PUT(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token ),
+                                       body = upload_file(file_name))
   setwd(temp_wd)
   create_response
 }
