@@ -69,11 +69,17 @@ oos_get_file <- function(credentials,container,file_name) {
   data
 }
 
+#' Executes a file from the Oracle Object store.  Used to load files
+#'
+#' @param credentials List Object returned from a call to oos_autheticate
+#' @param container Full container name where a file resides.
+#' @param file_name The file name to execute
+#'
 oos_exe_file <- function(credentials,container,file_name) {
   fetch_url <- paste(credentials$url,"/",container,"/",file_name,sep="")
   remote_file <- content(httr::GET(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token)), as="text")
-  remote_file
   source(remote_file)
+  remote_file
 }
 
 #' Lists the contents of a container and all sub containers.
