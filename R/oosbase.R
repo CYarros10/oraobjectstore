@@ -74,6 +74,7 @@ oos_get_file <- function(credentials,container,file_name) {
 #' @param credentials List Object returned from a call to oos_autheticate
 #' @param container Full container name where a file resides.
 #' @param file_name The file name to execute
+#' @export
 #'
 oos_exe_file <- function(credentials,container,file_name) {
   fetch_url <- paste(credentials$url,"/",container,"/",file_name,sep="")
