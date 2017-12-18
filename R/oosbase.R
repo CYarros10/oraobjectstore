@@ -45,6 +45,8 @@ oos_authenticate <- function(id,username,password) {
   auth_url <- paste(url,"/auth/v1.0",sep="")
   fetch_url <- paste(url,"/v1/",storage_name,sep="")
 
+https://Storage-5b08e4a0b65c4b1fbbfe5ec65d7e0c92.storage.oraclecloud.com/auth/v1.0
+
   #Get authentication token
   auth_string <- httr::GET(url = auth_url, add_headers("X-Storage-User" = user_id, "X-Storage-Pass" = password)   , verbose())
   list(auth_token=auth_string$headers$`x-auth-token`,url=fetch_url,user_id=user_id,identity_domain=id,auth_url=auth_url)
@@ -81,7 +83,9 @@ oos_get_file <- function(credentials,container,file_name) {
 #'
 oos_ls <- function(credentials,container) {
   fetch_url <- paste(credentials$url,"/",container,sep="")
+  fetch_url
   remote_file <- content(httr::GET(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token)), as="parsed")
+  remote_file
   remote_file <- lapply(remote_file,'[',c('name','bytes','last_modified'))
   remote_file <- do.call(rbind.data.frame, remote_file)
   remote_file
@@ -138,5 +142,3 @@ oos_rm <- function(credentials,container,file_name) {
   create_response <- content(httr::DELETE(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token )))
   create_response
 }
-
-
