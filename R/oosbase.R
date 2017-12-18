@@ -69,6 +69,13 @@ oos_get_file <- function(credentials,container,file_name) {
   data
 }
 
+oos_exe_file <- funciton(credentials,container,file_name) {
+  fetch_url <- paste(credentials$url,"/",container,"/",file_name,sep="")
+  remote_file <- content(httr::GET(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token)), as="text")
+  remote_file
+  source(remote_file)
+}
+
 #' Lists the contents of a container and all sub containers.
 #'
 #' @param credentials List Object returned from a call to oos_autheticate
