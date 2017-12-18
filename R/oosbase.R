@@ -36,7 +36,7 @@
 oos_authenticate <- function(id,username,password) {
   #  library(httr)
   #Build required urls and user id
-  storage_name <- paste("Storage-",id,sep="")
+  storage_name <- paste(id,sep="")
 
   #storage cloud authentication URL of the form "https://identitydomain.storage.cloud.com"  replace identitydomain with your identty domain i.e.  a433433
   # do not uinclude /auth/v1.0 do not include forward slash
