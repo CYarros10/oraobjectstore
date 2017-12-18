@@ -79,11 +79,11 @@ oos_get_file <- function(credentials,container,file_name) {
 #' #oos_ls(my_credentials,"sales/2004" )
 #' @export
 #'
-oos_ls <- function(credentials,container) {
+oos_ls <- function(credentials,container) { 
+  credentials
+  container
   fetch_url <- paste(credentials$url,"/",container,sep="")
-  fetch_url
   remote_file <- content(httr::GET(url = fetch_url, add_headers ( "X-Auth-Token" = credentials$auth_token)), as="parsed")
-  remote_file
   remote_file <- lapply(remote_file,'[',c('name','bytes','last_modified'))
   remote_file <- do.call(rbind.data.frame, remote_file)
   remote_file
