@@ -45,8 +45,6 @@ oos_authenticate <- function(id,username,password) {
   auth_url <- paste(url,"/auth/v1.0",sep="")
   fetch_url <- paste(url,"/v1/",storage_name,sep="")
 
-https://Storage-5b08e4a0b65c4b1fbbfe5ec65d7e0c92.storage.oraclecloud.com/auth/v1.0
-
   #Get authentication token
   auth_string <- httr::GET(url = auth_url, add_headers("X-Storage-User" = user_id, "X-Storage-Pass" = password)   , verbose())
   list(auth_token=auth_string$headers$`x-auth-token`,url=fetch_url,user_id=user_id,identity_domain=id,auth_url=auth_url)
